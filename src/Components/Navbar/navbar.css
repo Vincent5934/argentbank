@@ -1,0 +1,32 @@
+nav {
+    width:100%;
+    height:65px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px 5px 20px;
+    font-weight: bold;
+}
+
+.logo{
+width:200px;
+height:55px;
+cursor: pointer;
+}
+
+.logIn{
+    width:7%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    gap:5px;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color:inherit;
+}
+
+a:hover {
+    text-decoration: underline;
+}

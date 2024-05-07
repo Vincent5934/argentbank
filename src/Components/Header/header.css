@@ -1,0 +1,29 @@
+.hero {
+    background-image: url(../../Assets/bank-tree.webp);
+    background-position: 0 -190px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+    position: relative;
+}
+
+.heroContent {
+    width:360px;
+    height:210px;
+    background-color: white;
+    position: absolute;
+    top:80px;
+    right:100px;
+    padding:25px;
+}
+
+.title{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.text{
+    width:90%;
+    margin-top:25px;
+    font-size: 20px;
+}

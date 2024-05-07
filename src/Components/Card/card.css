@@ -1,0 +1,23 @@
+.card {
+    width: 33%;
+    height: 365px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 40px;
+}
+
+.cardImage {
+    width: 152px;
+    height: 152px;
+    padding: 16px;
+    border: 10px solid #00bc77;
+    border-radius: 50%;
+}
+
+.cardText {
+    width: 85%;
+    text-align: center;
+}
+
