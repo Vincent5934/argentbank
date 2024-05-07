@@ -1,8 +1,0 @@
-.accountContainer {
-    width:100%;
-    min-height: 85vh;
-    background-color: #12002b;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}

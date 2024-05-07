@@ -1,6 +1,6 @@
 import "./banner.css"
 import bannerDataItem from "../../Data/bannerDataItem.json"
-import Card from "../Card/Card";
+import Card from "./Card/Card";
 import iconChat from "../../Assets/icon-chat.webp"
 import iconMoney from "../../Assets/icon-money.webp"
 import iconSecurity from "../../Assets/icon-security.webp"

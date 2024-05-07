@@ -16,9 +16,7 @@ export const loginUser = createAsyncThunk(
             let profileUser = await fetch('http://localhost:3001/api/v1/user/profile',{
                 method:'post',
                 headers:{'Authorization' : `Bearer ${result.body.token}`},
-                
             })
-           
             let profileResult = await profileUser.json()
             console.log(profileResult)
         }
