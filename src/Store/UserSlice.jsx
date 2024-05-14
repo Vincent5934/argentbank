@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-
 export const loginUser = createAsyncThunk(
     "user/loginUser",
     async(userCredentials) => {
@@ -11,14 +10,14 @@ export const loginUser = createAsyncThunk(
             body: JSON.stringify(userCredentials)
         })
         let result = await request.json()
-        console.log(result)
         if(result.status === 200){
             let profileUser = await fetch('http://localhost:3001/api/v1/user/profile',{
                 method:'post',
                 headers:{'Authorization' : `Bearer ${result.body.token}`},
             })
             let profileResult = await profileUser.json()
-            console.log(profileResult)
+            let firstName = profileResult.body.firstName
+            console.log(firstName)
         }
     }
 ) 
