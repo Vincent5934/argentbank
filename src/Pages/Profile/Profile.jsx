@@ -1,31 +1,50 @@
 import Card from "../../Components/Account/Card/Card";
 import "./profile.css"
 import balance from "../../Data/balance.json"
-import { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { selectToken, selectUser, setUser } from "../../Store/UserSlice"
+import { useState } from 'react';
 
 
 const Profile = () => {
     const [modal, setModal] = useState(false);
     const [userName, setName] = useState('');
-    const test = "test"
+    const token = useSelector(selectToken);
+    const user = useSelector(selectUser);
+    const changeUsername = useDispatch();
+console.log(user)
+    const usernameSubmit = async (e) => {
+        e.preventDefault();
+
+        const sendUserName = { userName };
+
+        const request = await fetch('http://localhost:3001/api/v1/user/profile', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token.payload}`
+            },
+            body: JSON.stringify(sendUserName)
+        });
+
+        const result = await request.json();
+
+        changeUsername(setUser(result));
+    };
 
     const toggleModal = () => {
         setModal(!modal);
     };
 
-    if (modal) {
-        document.body.classList.add('active-modal')
-    } else {
-        document.body.classList.remove('active-modal')
-    }
-
-
     return (
         <>
-            <div className="profileTitle">
-                <h1>Welcome Back</h1>
-            </div>
+       
             <div className="profileContainer">
+            {token && (
+                <div className="profileTitle">
+                    <h1>Welcome Back {user.payload.body.userName}</h1>
+                </div>
+                    )}
                 <button onClick={toggleModal} className="profileEditButton">Edit Name</button>
                 {modal && (
                     <div className="modal">
@@ -37,22 +56,21 @@ const Profile = () => {
                                 value={userName}
                                 onChange={(e) => setName(e.target.value)}
                                 type="text" id="username"
-
                             />
-                            <label htmlFor="firstname">First name :</label>
+                            {/* <label htmlFor="firstname">First name :</label>
                             <input
-                                value={test}
+                                value={user.payload.body.firstName}
                                 type="text" id="firstname"
                             />
                             <label htmlFor="lastname">Last name :</label>
                             <input
-                                value={test}
+                                value={user.payload.body.lastName}
                                 type="text" id="lastname"
-                            />
-
-                            <button className="closeModal" onClick={toggleModal}>
-                                CLOSE
-                            </button>
+                            /> */}
+                            <div className="buttonContainer" >
+                                <button className="profileEditButton" onClick={usernameSubmit} >Submit</button>
+                                <button className="profileEditButton" onClick={toggleModal}>Close</button>
+                            </div>
                         </div>
                     </div>
                 )}
