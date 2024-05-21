@@ -5,7 +5,11 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    padding: 40px;
+    padding-top: 40px;
+}
+
+.cardTitle {
+    text-align: center;
 }
 
 .cardImage {
@@ -21,3 +25,29 @@
     text-align: center;
 }
 
+@media screen and (max-width: 768px) {
+    .card {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .card {
+        width: 80%;
+    }
+    .cardTitle {
+        font-size: 16px;
+    }
+    
+    .cardImage {
+        width: 100px;
+        height: 100px;
+        padding: 16px;
+        border: 10px solid #00bc77;
+        border-radius: 50%;
+    }
+    
+    .cardText {
+        font-size: 14px;
+    }
+}

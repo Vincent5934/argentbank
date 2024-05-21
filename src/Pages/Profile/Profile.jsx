@@ -12,7 +12,7 @@ const Profile = () => {
     const token = useSelector(selectToken);
     const user = useSelector(selectUser);
     const changeUsername = useDispatch();
-console.log(user)
+
     const usernameSubmit = async (e) => {
         e.preventDefault();
 
@@ -37,19 +37,20 @@ console.log(user)
     };
 
     return (
-        <>
+        
        
             <div className="profileContainer">
             {token && (
                 <div className="profileTitle">
-                    <h1>Welcome Back {user.payload.body.userName}</h1>
+                    <h1>Welcome Back <br/> {user.payload.body.firstName} {user.payload.body.lastName} </h1>
                 </div>
                     )}
                 <button onClick={toggleModal} className="profileEditButton">Edit Name</button>
                 {modal && (
-                    <div className="modal">
-                        <div onClick={toggleModal} className="overlay"></div>
-                        <div className="modalContent">
+                   <>
+                        <div onClick={toggleModal}></div>
+                        <div className="modal">
+                            <div className="modalContent">
                             <h2>Edit User</h2>
                             <label htmlFor="username">User name :</label>
                             <input
@@ -57,7 +58,7 @@ console.log(user)
                                 onChange={(e) => setName(e.target.value)}
                                 type="text" id="username"
                             />
-                            {/* <label htmlFor="firstname">First name :</label>
+                            <label htmlFor="firstname">First name :</label>
                             <input
                                 value={user.payload.body.firstName}
                                 type="text" id="firstname"
@@ -66,15 +67,18 @@ console.log(user)
                             <input
                                 value={user.payload.body.lastName}
                                 type="text" id="lastname"
-                            /> */}
+                            />
                             <div className="buttonContainer" >
-                                <button className="profileEditButton" onClick={usernameSubmit} >Submit</button>
+                                <button className="profileEditButton" onClick={usernameSubmit}>Submit</button>
                                 <button className="profileEditButton" onClick={toggleModal}>Close</button>
                             </div>
+                            </div>
                         </div>
-                    </div>
+                  </>
                 )}
-                {balance.map((data => (
+
+
+                   {balance.map((data => (
                     <Card
                         key={data.id}
                         title={data.title}
@@ -83,7 +87,7 @@ console.log(user)
                     />
                 )))}
             </div>
-        </>
+        
     );
 }
 export default Profile;

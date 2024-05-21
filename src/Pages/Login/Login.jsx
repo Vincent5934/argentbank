@@ -31,7 +31,7 @@ const Login = () => {
 
             const profileRequest = await fetch('http://localhost:3001/api/v1/user/profile', {
                 method: 'POST',
-                headers: {'Authorization' : `Bearer ${result.body.token}`},
+                headers: {'Authorization' : `Bearer ${result.body.token}` },
             });
             const profileResult = await profileRequest.json();     
             dispatch(setUser(profileResult));

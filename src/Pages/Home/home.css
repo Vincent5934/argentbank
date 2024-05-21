@@ -1,6 +1,6 @@
 .hero {
     background-image: url(../../Assets/bank-tree.webp);
-    background-position: 0 -190px;
+    background-position: 0 -300px;
     background-size: cover;
     background-repeat: no-repeat;
     height: 400px;
@@ -8,22 +8,89 @@
 }
 
 .heroContent {
-    width:360px;
-    height:210px;
+    width: 360px;
+    height: 210px;
     background-color: white;
     position: absolute;
-    top:80px;
-    right:100px;
-    padding:25px;
+    top: 80px;
+    right: 100px;
+    padding: 25px;
 }
 
-.title{
+.title {
     font-size: 24px;
     font-weight: bold;
 }
 
-.text{
-    width:90%;
-    margin-top:25px;
+.text {
+    width: 90%;
+    margin-top: 25px;
     font-size: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+    .hero {
+        height: 300px;
+        background-position: 0 -150px;
+    }
+
+    .heroContent {
+        width: 300px;
+        height: 180px;
+        top: 50px;
+        right: 50px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .text {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero {
+        height: 200px;
+        background-position: 0 -150px;
+    }
+
+    .heroContent {
+        width: 200px;
+        height: 150px;
+        top: 20px;
+        right: 50px;
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 16px;
+    }
+
+    .text {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 550px){
+    .hero {
+        height: 150px;
+        background-position: 0 -100px;
+    }
+    .heroContent {
+        width: 150px;
+        height: 100px;
+        top: 25px;
+        right: 30px;
+        padding: 5px;
+    }
+    .title {
+        font-size: 12px;
+    }
+
+    .text {
+        font-size: 8px;
+    }
+
 }

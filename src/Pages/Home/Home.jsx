@@ -1,11 +1,11 @@
-import Banner from "../../Components/Banner/Banner"
-// import Header from "../../Components/Header/Header";
+import Banner from "../../Components/Banner/Banner";
 import "./home.css"
+
 
 const Home = () => {
     return ( 
         <>
-        <div className="hero">
+            <div className="hero">
             <div className="heroContent">
                 <p className="title">No fees.</p>
                 <p className="title">No minimum deposit</p>
@@ -13,12 +13,8 @@ const Home = () => {
                 <p className="text">Open a savings account with Argent Bank today!</p>
             </div>
         </div>
-        
-        {/* <Header /> */}
         <Banner />
-       
         </>
      );
 }
- 
 export default Home;

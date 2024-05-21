@@ -4,4 +4,17 @@ height:76px;
 text-align: center;
 padding-top:32px;
 border-top:2px solid #ccc;
+position:relative;
 }
+
+/* @media screen and (max-width: 768px) {
+    footer {
+        top:550px;
+    } 
+} */
+
+/* @media screen and (max-width: 550px) {
+    footer {
+        top:400px;
+    } 
+} */
