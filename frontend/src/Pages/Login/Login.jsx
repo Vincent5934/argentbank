@@ -36,7 +36,8 @@ const Login = () => {
             const profileResult = await profileRequest.json();     
             dispatch(setUser(profileResult));
             navigate("/Profile");
-
+           
+            console.log(localStorage)
         } 
         else {alert("Invalid Credentials")};
     }

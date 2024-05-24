@@ -103,11 +103,11 @@ paths:
           description: Internal Server Error
           
 # ROUTE PHASE 2
-  /user/account:
+  /user/accounts:
     get: 
       tags:
         - Accounts and Transactions Module
-      summary: Current User Account
+      summary: Current User Accounts
       description: Getting all user number accounts and balance
       security:
         - Bearer: []
@@ -120,9 +120,11 @@ paths:
               $ref: '#/definitions/Account'
         '401':
           description: Unauthorized user
+        '404':
+          description: User not found
         '500':
           description: Internal Server Error
-  /account/{accountID}/transactions:
+  /accounts/{accountID}/transactions:
     get:
       tags:
         - Accounts and Transactions Module
@@ -145,10 +147,12 @@ paths:
               $ref: '#/definitions/Transactions'
         '401':
           description: Unauthorized user
+        '404':
+          description: User not found
         '500':
           description: Internal Server Error
   /transactions/{transactionID}/category:
-    post:
+    put:
       tags:
         - Accounts and Transactions Module
       summary: Choose a category of transaction
@@ -177,36 +181,6 @@ paths:
         '500': 
           description: Internal Servor Error
   /transactions/{transactionID}/note:
-  # vérifier si méthode post ou put par rapport à la route d'après
-    post: 
-      tags:
-        - Accounts and Transactions Module
-      summary: Add transaction note
-      description: Adding a note to a transaction
-      security: 
-        - Bearer: []
-      parameters:
-        - in: path
-          name: transactionID
-          description: ID of a transaction
-          required: true
-          type: string
-        - in: body
-          name: note
-          description: New transaction note
-          required: true
-          schema: 
-            $ref: '#/definitions/TransactionNote'
-      responses:
-        '200':
-          description: Note added to the transaction successfully
-          schema: 
-            $ref: '#/definitions/TransactionNote'
-        '401':
-          description: Unauthorized user
-        '500':
-          description: Internal Server Error
-  /transactions/{transactionID}/note/{noteID}:
     put:
       tags:
         - Accounts and Transactions Module
@@ -220,11 +194,6 @@ paths:
           description: ID of a transaction
           required: true
           type: string
-        - in: path
-          name: noteID
-          description: ID of a note
-          required: true
-          type: string
         - in: body
           name: note
           description: Modify transaction's note
@@ -236,31 +205,6 @@ paths:
           description: Note modified successfully
           schema:
             $ref: '#/definitions/ModifyTransactionNote'
-        '401':
-          description: Unauthorized user
-        '500':
-          description: Internal Server Error
-    delete:
-      tags:
-        - Accounts and Transactions Module
-      summary: Delete transaction's note
-      description: API for deleting a note of a transaction
-      security:
-        - Bearer: []
-      parameters:
-        - in: path
-          name: transactionID
-          description: ID of a transaction
-          required: true
-          type: string
-        - in: path
-          name: noteID
-          description: ID of a note
-          required: true
-          type: string
-      responses:
-        '200':
-          description: Note deleted successfully
         '401':
           description: Unauthorized user
         '500':

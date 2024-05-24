@@ -16,15 +16,15 @@ const userSlice = createSlice({
         setUser: (state, action) => {
             state.user = action
         },
-        disconnect: (state, action) =>{
+        disconnect: (state) =>{
             state.token = initialState.token;
             state.user = initialState.user;
         }
     },
 })
-const { actions, reducer } = userSlice
-export const {setLogs, setUser, disconnect} = actions
+
+export const {setLogs, setUser, disconnect} = userSlice.actions
 export const selectToken = state => state.token
 export const selectUser = state => state.user
 
-export default reducer
+export default userSlice.reducer
