@@ -28,6 +28,7 @@ form {
 display: flex;
 flex-direction: column;
 gap:15px;
+
 }
 
 .remenber {
@@ -44,8 +45,3 @@ gap:15px;
     color: #fff;
 }
 
-.alert {
-    width: 100px;
-    height:100px;
-    background-color: blue;
-}

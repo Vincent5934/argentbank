@@ -27,7 +27,7 @@ nav {
     height: auto;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
     cursor: pointer;
     padding-right: 10px;
 }

@@ -1,0 +1,34 @@
+.editForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.editFormUserName {
+    height:200px;
+    background-color: #12002b;
+    color:white; 
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.editButton {
+    width: 45%;
+    height:40px;
+    border-color: #00bc77;
+    background-color: #00bc77;
+    color: #fff;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.overlay {
+    background-color:lightgray;
+}

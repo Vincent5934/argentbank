@@ -1,11 +1,11 @@
 .accountContainer{
     width:80%;
     height:130px;
-    background-color: white;
+    background-color:white;
     padding:25px;
    display: flex;
    justify-content: space-between;
-   align-items: center;
+   align-items: center; 
 }
 
 .accounText {
@@ -22,7 +22,6 @@
     padding: 8px;
     font-size: 1.1rem;
     font-weight: bold;
-    margin-top: 1rem;
     border-color: #00bc77;
     background-color: #00bc77;
     color: #fff;

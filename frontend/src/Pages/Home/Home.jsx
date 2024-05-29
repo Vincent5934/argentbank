@@ -1,7 +1,6 @@
 import Banner from "../../Components/Banner/Banner";
 import "./home.css"
 
-
 const Home = () => {
     return ( 
         <>

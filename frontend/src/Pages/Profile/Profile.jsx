@@ -1,101 +1,79 @@
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { userSignIn } from "../../Store/UserSlice"
+import Form from "../../Components/Form/Form"
 import Card from "../../Components/Account/Card/Card";
-import "./profile.css";
 import balance from "../../Data/balance.json";
-import { useSelector, useDispatch } from "react-redux";
-import { selectToken, selectUser, setUser } from "../../Store/UserSlice";
-import { useState } from "react";
+import "./profile.css";
 
 const Profile = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userData = useSelector((store) => store.USER.userData);
   const [modal, setModal] = useState(false);
-  const [userName, setName] = useState("");
-  const token = useSelector(selectToken);
-  const user = useSelector(selectUser);
-  console.log(user)
-  const changeUsername = useDispatch();
 
-  const usernameSubmit = async (e) => {
-    e.preventDefault();
-
-    const sendUserName = { userName };
-
-    const request = await fetch("http://localhost:3001/api/v1/user/profile", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token.payload}`,
-      },
-      body: JSON.stringify(sendUserName),
-    });
-    // sessionStorage.getItem(token);
-    const result = await request.json();
-    console.log(result)
-    changeUsername(setUser(result));
-  };
-
-  const toggleModal = () => {
-    setModal(!modal);
-  };
+  useEffect(() => {
+    const getUserData = async (token) => {
+      try {
+        await fetch("http://localhost:3001/api/v1/user/profile", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+        })
+          .then((res) => {
+            return res.json();
+          })
+          .then((userStatus) => {
+            dispatch(userSignIn(userStatus.body));
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (!(sessionStorage.getItem("token") || localStorage.getItem("token"))) {
+      navigate("/");
+    } else {
+      sessionStorage.getItem("token")
+        ? getUserData(sessionStorage.getItem("token"))
+        : getUserData(localStorage.getItem("token"));
+    }
+  }, [navigate, dispatch]
+  );
 
   return (
     <div className="profileContainer">
-      {/* {token && ( */}
-        <div className="profileTitle">
-          <h1>
-            Welcome Back <br /> {user.payload.body.firstName}{" "}
-            {user.payload.body.lastName}{" "}
-          </h1>
-        </div>
-    {/* //   )} */}
-      <button onClick={toggleModal} className="profileEditButton">
-        Edit Name
-      </button>
-      {modal && (
-        <>
-          <div onClick={toggleModal}></div>
-          <div className="modal">
-            <div className="modalContent">
-              <h2>Edit User</h2>
-              <label htmlFor="username">User name :</label>
-              <input
-                value={userName}
-                onChange={(e) => setName(e.target.value)}
-                type="text"
-                id="username"
-              />
-              <label htmlFor="firstname">First name :</label>
-              <input
-                value={user.payload.body.firstName}
-                type="text"
-                id="firstname"
-              />
-              <label htmlFor="lastname">Last name :</label>
-              <input
-                value={user.payload.body.lastName}
-                type="text"
-                id="lastname"
-              />
-              <div className="buttonContainer">
-                <button className="profileEditButton" onClick={usernameSubmit}>
-                  Submit
-                </button>
-                <button className="profileEditButton" onClick={toggleModal}>
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
-
-      {balance.map((data) => (
-        <Card
-          key={data.id}
-          title={data.title}
-          amount={data.amount}
-          description={data.description}
-        />
-      ))}
+      <div className="profileTitle">
+        {!modal && (
+          <>
+            <h2>
+              Welcome back
+              <br />
+              {userData.firstName} {userData.lastName}
+            </h2>
+            <button onClick={(e) => setModal(true)} className="profileEditButton">
+              Edit Name
+            </button>
+          </>
+        )}
+        {modal && (
+          <Form setModal={setModal} />
+        )}
+      </div>
+      <div className="cardContainer">
+        {balance.map((data) => (
+          <Card
+            key={data.id}
+            title={data.title}
+            amount={data.amount}
+            description={data.description}
+          />
+        ))}
+      </div>
     </div>
   );
 };
+
 export default Profile;
